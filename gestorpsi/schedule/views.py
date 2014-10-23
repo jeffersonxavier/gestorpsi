@@ -466,17 +466,34 @@ def schedule_index(request,
 
 
 
-def week_view(request,
+def week_view(request, place=None,
     year = datetime.now().strftime("%Y"),
     month = datetime.now().strftime("%m"),
     day = datetime.now().strftime("%d"), ):
 
-    return render_to_response('schedule/schedule_week.html',         dict(
-            places = Place.objects.active().filter(organization=request.user.get_profile().org_active.id),
+    place_id = place
+
+    if place_id == None:
+        place_id = Place.objects.filter(place_type=1, organization=request.user.get_profile().org_active)[0].id
+
+    try:
+        place = Place.objects.get( pk=place_id )
+    except:
+        place = Place.objects.filter(place_type=1, organization=request.user.get_profile().org_active)[0]
+
+    data = dict(
+            places_list = Place.objects.active().filter(organization=request.user.get_profile().org_active.id),
+            place = place,
+            path = 'week/',
             rooms = Room.objects.active().filter(place__organization=request.user.get_profile().org_active.id),
             services = Service.objects.active().filter(organization=request.user.get_profile().org_active.id),
             professionals = CareProfessional.objects.active_all(request.user.get_profile().org_active.id)
-            ), context_instance=RequestContext(request))
+        )
+
+    return render_to_response(
+        'schedule/schedule_week.html',
+        data,
+        context_instance=RequestContext(request))
 
 def week_view_table(request,
     year = datetime.now().strftime("%Y"),
