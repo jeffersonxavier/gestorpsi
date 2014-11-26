@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -6030,6 +6030,9 @@ msgstr "Órgão Emissor"
 msgid "Change password"
 msgstr "Alterar Senha"
 
+msgid "Add Availability"
+msgstr "Adicionar Disponibilidade"
+
 msgid "Change e-mail"
 msgstr "Alterar E-mail"
 
@@ -7936,4 +7939,3 @@ msgstr "Fim do último horário"
 
 #~ msgid "Admissions reports saved"
 #~ msgstr "Relatório de admissão gravado"
-
